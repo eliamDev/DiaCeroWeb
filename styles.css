@@ -60,6 +60,13 @@ body {
   padding-top: 3rem;
 }
 
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
 .eyebrow {
   text-transform: uppercase;
   color: var(--accent-2);
@@ -83,6 +90,14 @@ h2 span {
   margin: 1rem 0 1.5rem;
 }
 
+.join-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.2rem;
+}
+
 .ip-card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -90,6 +105,17 @@ h2 span {
   padding: 1rem 1.2rem;
   margin-bottom: 1.2rem;
   display: inline-block;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.ip-card.ip-copied {
+  border-color: #7dff9a;
+  background: #24304d;
+  box-shadow: 0 0 0 3px rgba(125, 255, 154, 0.25), 0 0 22px rgba(125, 255, 154, 0.35);
+}
+
+.join-row .ip-card {
+  margin-bottom: 0;
 }
 
 .ip-title {
@@ -112,6 +138,9 @@ h2 span {
 
 .btn {
   display: inline-block;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
   text-decoration: none;
   color: #06111a;
   background: linear-gradient(135deg, var(--accent), #9df4ff);
@@ -123,6 +152,12 @@ h2 span {
 .btn-small {
   padding: 0.5rem 0.85rem;
   font-size: 0.9rem;
+}
+
+.btn-copy {
+  background: #2a3458;
+  color: #f2f5ff;
+  border: 1px solid #3b4a7d;
 }
 
 
@@ -185,4 +220,28 @@ h2 span {
 
 .footer-content {
   padding: 1.3rem 0 2.5rem;
+}
+
+@media (max-width: 640px) {
+  .nav {
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+
+  .nav-actions {
+    width: 100%;
+  }
+
+  .join-row {
+    align-items: stretch;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
 }

@@ -14,7 +14,6 @@
     <nav class="nav container">
       <h1 class="logo">DiaCero <span>Server</span></h1>
       <div class="nav-actions">
-        <a class="btn btn-small" href="#join">Jugar</a>
         <a class="btn btn-small btn-discord" href="https://discord.gg/hKQBv7Wea6" target="_blank"
           rel="noopener noreferrer">Discord</a>
       </div>
@@ -26,12 +25,17 @@
         Explora un mundo survival tecnico con protecciones, no pvp, eventos regulares
         y una comunidad activa.
       </p>
-      <div class="ip-card" id="join">
-        <p class="ip-title">IP del servidor</p>
-        <p class="ip-value">mc.diacero.online</p>
-        <p class="ip-note">Versión recomendada: 1.21.7</p>
+      <div class="join-row">
+        <div class="ip-card" id="join">
+          <p class="ip-title">IP del servidor</p>
+          <p class="ip-value">mc.diacero.online</p>
+          <p class="ip-note">Versión recomendada: 1.21.7</p>
+        </div>
+        <div class="hero-actions">
+          <button class="btn btn-copy" id="copyJavaIpBtn" type="button" data-ip="mc.diacero.online">Copiar IP</button>
+          <a class="btn" href="#features">Ver características</a>
+        </div>
       </div>
-      <a class="btn" href="#features">Ver características</a>
     </section>
   </header>
 
@@ -66,6 +70,49 @@
       <p>No afiliado con Mojang Studios.</p>
     </div>
   </footer>
+  <script>
+    const copyJavaIpBtn = document.getElementById("copyJavaIpBtn");
+    const ipCard = document.getElementById("join");
+    let glowTimeoutId;
+
+    if (copyJavaIpBtn) {
+      const javaIp = copyJavaIpBtn.dataset.ip || "mc.diacero.online";
+
+      copyJavaIpBtn.addEventListener("click", async () => {
+        const originalLabel = "Copiar IP";
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(javaIp);
+          } else {
+            const fallbackInput = document.createElement("input");
+            fallbackInput.value = javaIp;
+            fallbackInput.style.position = "fixed";
+            fallbackInput.style.opacity = "0";
+            document.body.appendChild(fallbackInput);
+            fallbackInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(fallbackInput);
+          }
+
+          copyJavaIpBtn.textContent = "IP copiada";
+          if (ipCard) {
+            ipCard.classList.add("ip-copied");
+            clearTimeout(glowTimeoutId);
+            glowTimeoutId = setTimeout(() => {
+              ipCard.classList.remove("ip-copied");
+            }, 1800);
+          }
+        } catch (error) {
+          copyJavaIpBtn.textContent = "Error al copiar";
+        }
+
+        setTimeout(() => {
+          copyJavaIpBtn.textContent = originalLabel;
+        }, 1800);
+      });
+    }
+  </script>
 </body>
 
 </html>
