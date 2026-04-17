@@ -39,6 +39,12 @@ body {
   align-items: center;
 }
 
+.nav-actions {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
 .logo {
   margin: 0;
   letter-spacing: 0.5px;
@@ -117,6 +123,12 @@ h2 span {
 .btn-small {
   padding: 0.5rem 0.85rem;
   font-size: 0.9rem;
+}
+
+
+.btn-discord {
+  background: #5865f2;
+  color: #ffffff;
 }
 
 .features {
